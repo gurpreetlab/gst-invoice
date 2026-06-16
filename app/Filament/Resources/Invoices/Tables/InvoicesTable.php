@@ -80,6 +80,13 @@ class InvoicesTable
                                 ->send();
                         }),
 
+                    Action::make('downloadPdf')
+                        ->label('Download PDF')
+                        ->icon('heroicon-o-arrow-down-tray')
+                        ->color('success')
+                        ->url(fn($record) => route('invoice.pdf', $record))
+                        ->openUrlInNewTab(),
+
                     DeleteAction::make()->visible(fn($record) => !$record->trashed()),
                     RestoreAction::make()->visible(fn($record) => $record->trashed()),
                     ForceDeleteAction::make()->visible(fn($record) => $record->trashed())

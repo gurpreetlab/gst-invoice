@@ -35,6 +35,13 @@ class ViewInvoice extends ViewRecord
                         ->send();
                 }),
 
+            Action::make('downloadPdf')
+                ->label('Download PDF')
+                ->icon('heroicon-o-arrow-down-tray')
+                ->color('success')
+                ->url(fn () => route('invoice.pdf', $this->record))
+                ->openUrlInNewTab(),
+
             EditAction::make(),
             DeleteAction::make(),
             RestoreAction::make(),
