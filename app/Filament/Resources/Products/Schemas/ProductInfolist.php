@@ -16,9 +16,10 @@ class ProductInfolist
                 TextEntry::make('hsn_code'),
                 TextEntry::make('unit'),
                 TextEntry::make('price')
-                    ->money(),
+                    ->money('INR'),
                 TextEntry::make('tax_rate')
-                    ->numeric(),
+                    ->numeric()
+                    ->suffix('%'),
                 TextEntry::make('deleted_at')
                     ->dateTime()
                     ->visible(fn (Product $record): bool => $record->trashed()),

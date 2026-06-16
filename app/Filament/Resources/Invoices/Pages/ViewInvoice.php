@@ -3,7 +3,9 @@
 namespace App\Filament\Resources\Invoices\Pages;
 
 use App\Filament\Resources\Invoices\InvoiceResource;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\RestoreAction;
 use Filament\Resources\Pages\ViewRecord;
 
 class ViewInvoice extends ViewRecord
@@ -14,6 +16,8 @@ class ViewInvoice extends ViewRecord
     {
         return [
             EditAction::make(),
+            DeleteAction::make(),
+            RestoreAction::make()
         ];
     }
 }

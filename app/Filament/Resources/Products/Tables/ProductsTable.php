@@ -25,10 +25,11 @@ class ProductsTable
                 TextColumn::make('unit')
                     ->searchable(),
                 TextColumn::make('price')
-                    ->money()
+                    ->money('INR')
                     ->sortable(),
                 TextColumn::make('tax_rate')
                     ->numeric()
+                    ->suffix('%')
                     ->sortable(),
                 TextColumn::make('deleted_at')
                     ->dateTime()

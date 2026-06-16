@@ -11,6 +11,8 @@ class InvoiceItem extends Model
     use SoftDeletes, HasFactory;
 
     protected $fillable = [
+        'invoice_id',
+        'product_id',
         'description',
         'quantity',
         'price',

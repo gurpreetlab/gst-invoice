@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Invoices\Schemas;
 
 use App\Models\Invoice;
+use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -39,6 +40,22 @@ class InvoiceInfolist
                 TextEntry::make('updated_at')
                     ->dateTime()
                     ->placeholder('-'),
+
+                RepeatableEntry::make('items')
+                    ->label('Invoice Items')
+                    ->columnSpan('full')
+                    ->schema([
+                        TextEntry::make('product.name')
+                            ->label('Product'),
+                        TextEntry::make('quantity'),
+                        TextEntry::make('price')
+                            ->money('INR'),
+                        TextEntry::make('tax_rate')
+                            ->suffix('%'),
+                        TextEntry::make('amount')
+                            ->money('INR')
+                    ])
+                    ->columns(5)
             ]);
     }
 }

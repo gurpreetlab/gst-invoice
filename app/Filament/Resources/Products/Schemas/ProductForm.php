@@ -20,9 +20,10 @@ class ProductForm
                 TextInput::make('price')
                     ->required()
                     ->numeric()
-                    ->prefix('$'),
+                    ->prefix('₹'),
                 TextInput::make('tax_rate')
                     ->required()
+                    ->suffix('%')
                     ->numeric(),
             ]);
     }
