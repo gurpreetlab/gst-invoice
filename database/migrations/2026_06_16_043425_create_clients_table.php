@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('state');
             $table->string('pincode');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('due_date');
             $table->text('notes')->nullable();
             $table->enum('status', ['draft', 'sent', 'paid', 'overdue'])->default('draft');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

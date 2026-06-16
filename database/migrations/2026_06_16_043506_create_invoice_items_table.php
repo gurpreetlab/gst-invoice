@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->decimal('tax_rate', 5, 2);
             $table->decimal('amount', 10, 2);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
