@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome')->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('dashboard', 'dashboard')->name('dashboard');
+    Route::redirect('dashboard', 'admin')->name('dashboard');
 
     Route::get('invoices/{invoice}/pdf', InvoicePdfController::class)->name('invoice.pdf');
 });
