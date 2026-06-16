@@ -20,6 +20,27 @@ class Invoice extends Model
         'status',
     ];
 
+
+    protected static function booted(): void
+    {
+        static::creating(function ($invoice) {
+            $year = now()->year;
+
+            $lastInvoice = static::whereYear('created_at', $year)
+                ->latest('id')
+                ->first();
+
+            $nextNumber = 1;
+
+            if ($lastInvoice) {
+                $parts = explode('-', $lastInvoice->invoice_number);
+                $nextNumber = (int) end($parts) + 1;
+            }
+
+            $invoice->invoice_number = 'INV-' . $year . '-' . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+        });
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

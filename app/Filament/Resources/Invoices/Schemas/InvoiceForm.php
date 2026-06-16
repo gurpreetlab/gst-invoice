@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Invoices\Schemas;
 
 use App\Models\Product;
-use App\Models\User;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
@@ -25,8 +24,6 @@ class InvoiceForm
                     ->relationship('client', 'name', modifyQueryUsing: fn($query) => $query->where('user_id', Auth::id()))
                     ->searchable()
                     ->preload()
-                    ->required(),
-                TextInput::make('invoice_number')
                     ->required(),
                 DatePicker::make('invoice_date')
                     ->required(),
