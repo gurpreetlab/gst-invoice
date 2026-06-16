@@ -2,10 +2,14 @@
 
 namespace App\Filament\Resources\Products\Tables;
 
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
@@ -48,8 +52,15 @@ class ProductsTable
                 TrashedFilter::make(),
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ActionGroup::make([
+                    ViewAction::make(),
+                    EditAction::make(),
+                    DeleteAction::make()->visible(fn($record) => !$record->trashed()),
+                    RestoreAction::make()->visible(fn($record) => $record->trashed()),
+                    ForceDeleteAction::make()->visible(fn($record) => $record->trashed())
+                ])
+                    ->icon('heroicon-o-ellipsis-horizontal')
+                    ->label('Actions')
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

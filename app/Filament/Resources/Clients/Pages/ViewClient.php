@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Clients\Pages;
 use App\Filament\Resources\Clients\ClientResource;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
 use Filament\Resources\Pages\ViewRecord;
 
@@ -17,7 +18,8 @@ class ViewClient extends ViewRecord
         return [
             EditAction::make(),
             DeleteAction::make(),
-            RestoreAction::make()
+            RestoreAction::make(),
+            ForceDeleteAction::make()
         ];
     }
 }
